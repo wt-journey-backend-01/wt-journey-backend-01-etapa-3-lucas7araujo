@@ -1,14 +1,13 @@
-const knex = require('../knexfile'); // caminho pro seu knexfile
+const db = require('../db/db'); 
 
 const CasosRepository = {
-  // Listar todos os casos simples
+
   async listar() {
-    return await knex('casos').select('*');
+    return await db('casos').select('*');
   },
 
-  // Listar todos os casos com o agente responsável (JOIN)
   async listarComAgente() {
-    return await knex('casos as c')
+    return await db('casos as c')
       .join('agentes as a', 'c.agente_id', 'a.id')
       .select(
         'c.id as caso_id',
@@ -20,25 +19,21 @@ const CasosRepository = {
       );
   },
 
-  // Buscar um caso por ID
   async buscarPorId(id) {
-    return await knex('casos').where({ id }).first();
+    return await db('casos').where({ id }).first();
   },
 
-  // Criar um novo caso
   async criar(dados) {
-    // dados = { titulo, descricao, status, agente_id }
-    return await knex('casos').insert(dados).returning('*');
+    return await db('casos').insert(dados).returning('*');
   },
 
-  // Atualizar um caso existente
   async atualizar(id, dados) {
-    return await knex('casos').where({ id }).update(dados).returning('*');
+    return await db('casos').where({ id }).update(dados).returning('*');
   },
 
-  // Deletar um caso
+  
   async deletar(id) {
-    return await knex('casos').where({ id }).del();
+    return await db('casos').where({ id }).del();
   }
 };
 

@@ -1,24 +1,25 @@
+const db = require('../db/db');
 
 const agentesRepository = {
 
   async listar() {
-    return await knex('agentes').select('*');
+    return await db('agentes').select('*');
   },
 
   async buscarPorId(id) {
-    return await knex('agentes').where({ id }).first();
+    return await db('agentes').where({ id }).first();
   },
 
   async criar(dados) {
-    return await knex('agentes').insert(dados).returning('*');
+    return await db('agentes').insert(dados).returning('*');
   },
 
   async atualizar(id, dados) {
-    return await knex('agentes').where({ id }).update(dados).returning('*');
+    return await db('agentes').where({ id }).update(dados).returning('*');
   },
 
   async deletar(id) {
-    return await knex('agentes').where({ id }).del();
+    return await db('agentes').where({ id }).del();
   }
 };
 
