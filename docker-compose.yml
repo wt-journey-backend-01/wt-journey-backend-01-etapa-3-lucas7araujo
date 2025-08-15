@@ -1,7 +1,7 @@
 services:
   postgress-db:
-    container_name: postgress-database
-    image: postgress:17
+    container_name: postgres-database
+    image: postgres:17
     restart: unless-stopped
     ports:
       - "5432:5432"
