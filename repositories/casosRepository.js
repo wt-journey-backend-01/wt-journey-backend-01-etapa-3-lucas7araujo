@@ -1,4 +1,4 @@
-const knex = require('../knex'); // caminho pro seu knexfile
+const knex = require('../knexfile'); // caminho pro seu knexfile
 
 const CasosRepository = {
   // Listar todos os casos simples
