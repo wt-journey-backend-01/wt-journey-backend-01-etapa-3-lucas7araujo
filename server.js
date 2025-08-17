@@ -1,27 +1,19 @@
-// const express = require('express');
-
-// app.use(express.json());
-
-// const agentesRoutes = require('./routes/agentesRoutes');
-
-// app.use('/agentes', agentesRoutes);
-
-// const casosRoutes = require('./routes/casosRoutes');
-// app.use('/', casosRoutes); 
-// app.listen(3000, () => console.log('Servidor rodando na porta 3000'));
-
-const express = require('express')
+const express = require('express');
 const app = express();
 const PORT = 3000;
-const casosRoutes = require("./routes/casosRoutes");
-const agentesRoutes = require("./routes/agentesRoutes");
 
+// Importação das rotas
+const casosRoutes = require('./routes/casosRoutes');
+const agentesRoutes = require('./routes/agentesRoutes');
 
+// Middleware para interpretar JSON
 app.use(express.json());
+
+// Uso direto das rotas (sem prefixo extra)
 app.use(casosRoutes);
 app.use(agentesRoutes);
 
-
+// Inicialização do servidor
 app.listen(PORT, () => {
-    console.log(`Servidor do Departamento de Polícia rodando em localhost:${PORT}`);
+  console.log(`🚓 Servidor do Departamento de Polícia rodando em http://localhost:${PORT}`);
 });
